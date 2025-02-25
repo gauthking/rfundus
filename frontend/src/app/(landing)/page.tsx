@@ -61,7 +61,7 @@ export default function Page() {
           Quick and compliant refunds with stablecoins—globally trusted, locally
           delivered
         </h2>
-        <Link href={"/login"}>
+        <Link href={"/onboard"}>
           <button className="bg-black text-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition duration-300 text-xs md:text-lg">
             Start App
           </button>

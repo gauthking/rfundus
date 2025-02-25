@@ -40,8 +40,8 @@ export default function Page() {
     <main
       className={`relative w-full h-screen overflow-scroll bg-white text-black ${manrope.className}`}
     >
-      <section className="absolute z-10 w-[85%] md:w-[50%] top-[54%] md:top-[44%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col lg:flex-row justify-between items-center shadow-lg shadow-green-500/15 rounded-xl">
-        <section className="rounded-xl w-full lg:w-[55%] border-[1px] p-3 flex flex-col items-center bg-white py-5">
+      <section className="absolute z-10 w-[85%] md:w-[50%] top-[54%] md:top-[44%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col lg:flex-row justify-between items-center shadow-lg  rounded-xl h-[56%]">
+        <section className="rounded-xl w-full lg:w-[55%] border-[1px] p-3 flex flex-col items-center bg-white h-full">
           <h1 className="font-bold text-lg md:text-xl text-gray-600">
             welcome to the portal.
           </h1>
@@ -53,7 +53,7 @@ export default function Page() {
                 type === "customer" ? "bg-green-500/15" : ""
               }`}
             >
-              customer login
+              customer
             </p>
             <p
               onClick={() => setType("merchant")}
@@ -61,7 +61,7 @@ export default function Page() {
                 type === "merchant" ? "bg-green-500/15" : ""
               }`}
             >
-              merchant login
+              merchant
             </p>
           </div>
 
@@ -74,8 +74,8 @@ export default function Page() {
           )}
         </section>
 
-        <section className="flex flex-col justify-between h-full w-full lg:w-[45%]">
-          <div className="w-24 h-24 relative top-12 md:w-44 md:h-44 mx-auto">
+        <section className="flex flex-col justify-evenly h-full w-full lg:w-[45%]">
+          <div className="w-24 h-24 relative top-6 md:w-44 md:h-44 mx-auto">
             <Image src={logo} alt="logo" />
           </div>
           <InfoCards />

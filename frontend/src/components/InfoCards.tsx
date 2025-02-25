@@ -40,7 +40,7 @@ export default function InfoCards() {
   }, []);
 
   return (
-    <div className="relative top-[72px]  h-40 w-full rounded-lg  bg-green-50 p-4 shadow-lg">
+    <div className="h-40 w-full rounded-lg  bg-green-50 p-4 shadow-lg relative top-10">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
