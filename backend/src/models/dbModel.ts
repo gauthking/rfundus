@@ -9,8 +9,8 @@ const otpSchema = new mongoose.Schema<IOTP>({
 });
 
 const userSchema = new mongoose.Schema<IUser>({
-    email: { type: String, unique: true },
-    phone: { type: String, unique: true },
+    email: { type: String, unique: true, sparse: true },
+    phone: { type: String, unique: true, sparse: true },
     role: { type: String, default: "customer" }
 })
 

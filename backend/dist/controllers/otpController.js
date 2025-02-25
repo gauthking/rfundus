@@ -21,7 +21,7 @@ const sendOtp = async (req, res) => {
         // to del3te the existing otp records
         // await OTP.deleteMany({ value });
         await dbModel_1.OTP.create({ type, value, otp });
-        res.status(200).json({ message: 'OTP sent to mobile successfully' });
+        res.status(200).json({ message: `OTP sent to ${type} successfully` });
     }
     catch (error) {
         console.log('Error sending OTP', error);

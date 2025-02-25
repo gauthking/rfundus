@@ -12,8 +12,8 @@ const otpSchema = new mongoose_1.default.Schema({
     createdAt: { type: Date, default: Date.now(), expires: process.env.OTP_EXPIRY + 'm' }
 });
 const userSchema = new mongoose_1.default.Schema({
-    email: { type: String, required: true, unique: true },
-    phone: { type: String, required: true, unique: true },
+    email: { type: String, unique: true, sparse: true },
+    phone: { type: String, unique: true, sparse: true },
     role: { type: String, default: "customer" }
 });
 exports.OTP = mongoose_1.default.model("OTP", otpSchema);

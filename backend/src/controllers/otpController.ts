@@ -23,7 +23,7 @@ export const sendOtp = async (req: Request, res: Response): Promise<any> => {
         // await OTP.deleteMany({ value });
 
         await OTP.create({ type, value, otp });
-        res.status(200).json({ message: 'OTP sent to mobile successfully' });
+        res.status(200).json({ message: `OTP sent to ${type} successfully` });
 
 
     } catch (error) {

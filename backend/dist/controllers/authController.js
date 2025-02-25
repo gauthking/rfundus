@@ -1,29 +1,25 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logout = exports.login = exports.register = void 0;
 const dbModel_1 = require("../models/dbModel");
-const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const generateToken_1 = require("../utils/generateToken");
 const register = async (req, res) => {
-    const { email, password, otp, role } = req.body;
+    const { type, value, role } = req.body;
     try {
-        const userExists = await dbModel_1.User.findOne({ email });
+        const userExists = type === "email"
+            ? await dbModel_1.User.findOne({ email: value })
+            : await dbModel_1.User.findOne({ phone: value });
         if (userExists) {
             return res.status(400).json({ message: "User already exists" });
         }
-        const otpRecord = await dbModel_1.OTP.findOne({ email, otp });
-        if (!otpRecord)
-            return res.status(400).json({ message: "Invalid OTP or OTP has been expired. Please try again" });
-        const hashedPassword = await bcryptjs_1.default.hash(password, 10);
-        const user = await dbModel_1.User.create({ email, password: hashedPassword, role });
-        console.log("user registered successfully");
-        const token = (0, generateToken_1.generateToken)(user.id);
+        const newUser = type === "email"
+            ? await dbModel_1.User.create({ email: value, role })
+            : await dbModel_1.User.create({ phone: value, role });
+        console.log("User registered successfully");
+        const token = (0, generateToken_1.generateToken)(newUser.id);
         console.log("Generated Token:", token);
         res.cookie("token", token, { httpOnly: true });
-        res.status(201).json({ message: "User successfully registered", user });
+        res.status(201).json({ message: "User successfully registered", newUser });
     }
     catch (error) {
         console.log(error);
@@ -32,9 +28,9 @@ const register = async (req, res) => {
 };
 exports.register = register;
 const login = async (req, res) => {
-    const { email, phoneno } = req.body;
+    const { type, value } = req.body;
     try {
-        const user = await dbModel_1.User.findOne({ email });
+        const user = type === "email" ? await dbModel_1.User.findOne({ email: value }) : await dbModel_1.User.findOne({ phone: value });
         if (!user)
             return res.status(401).json({ message: "Invalid credentials" });
         // const isMatch = await bcrypt.compare(password, user.phone);
