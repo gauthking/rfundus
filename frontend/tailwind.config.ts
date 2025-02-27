@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        GeistSans: "var(--font-geist-sans)",
+        GeistMono: "var(--font-geist-mono)"
+      }
     },
   },
   plugins: [],

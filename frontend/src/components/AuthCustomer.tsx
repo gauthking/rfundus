@@ -1,8 +1,7 @@
-// ✅ Updated AuthMerchant.tsx with handleVerifyOtp called within handleAuthentication
-
 import React, { useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { countryCodes } from "@/utils/exports";
+import { useRouter } from "next/navigation";
 
 const AuthCustomer = () => {
   const [identifier, setIdentifier] = useState<string>("");
@@ -14,6 +13,8 @@ const AuthCustomer = () => {
   const [signUpFlag, setSignUpFlag] = useState<"login" | "signup">("login");
   const [method, setMethod] = useState<"email" | "mobile">("email");
   const [countryCode, setCountryCode] = useState<string>("+1");
+
+  const router = useRouter();
 
   const showAlert = (message: string, isSuccess = true) => {
     isSuccess ? setSuccess(message) : setError(message);
@@ -77,6 +78,8 @@ const AuthCustomer = () => {
       }
 
       showAlert(`${signUpFlag === "signup" ? "Sign Up" : "Login"} Successful!`);
+
+      router.push("/dashlanding");
     } catch (err) {
       console.log(err);
       showAlert(`Authentication failed. Please try again. - ${err}`, false);
